@@ -71,4 +71,6 @@ model Admin {
   id     String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   acesso String @unique @db.VarChar(30)
   senha  String @db.VarChar(255)
+
+  @@map("admin")
 }

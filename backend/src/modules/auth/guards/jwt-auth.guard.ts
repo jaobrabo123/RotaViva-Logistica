@@ -31,9 +31,8 @@ export class JwtAuthGuard implements CanActivate {
 
         const request = context.switchToHttp().getRequest<CustomRequest>();
 
-        const accessToken =
-            // this.extractTokenFromHeader(request) ??
-            this.extractTokenFromCookies(request);
+        const accessToken = this.extractTokenFromHeader(request);
+
         if (!accessToken) {
             throw new UnauthorizedException({
                 error: STATUS_CODES[HttpStatus.UNAUTHORIZED],
@@ -67,12 +66,12 @@ export class JwtAuthGuard implements CanActivate {
         return true;
     }
 
-    private extractTokenFromCookies(request: CustomRequest) {
-        return request.cookies.accessToken;
-    }
-
-    // private extractTokenFromHeader(request: CustomUnauthRequest) {
-    //     const [type, token] = request.headers.authorization?.split(" ") ?? [];
-    //     return type === "Bearer" ? token : undefined;
+    // private extractTokenFromCookies(request: CustomRequest) {
+    //     return request.cookies.accessToken;
     // }
+
+    private extractTokenFromHeader(request: CustomRequest) {
+        const [type, token] = request.headers.authorization?.split(" ") ?? [];
+        return type === "Bearer" ? token : undefined;
+    }
 }

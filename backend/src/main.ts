@@ -35,8 +35,8 @@ async function bootstrap() {
         .setTitle("RotaViva API")
         .setDescription("The API for the RotaViva project")
         .setVersion("1.0")
-        .addCookieAuth("accessToken")
-        .addSecurityRequirements("accessToken")
+        .addBearerAuth()
+        .addSecurityRequirements("bearer")
         .build();
 
     // * Criando o documento baseado no app

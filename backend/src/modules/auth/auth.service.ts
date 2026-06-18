@@ -42,7 +42,7 @@ export class AuthService {
             role: Role.ENTREGADOR,
         });
 
-        return { cookies: session };
+        return session;
     }
 
     async loginAdmin(dto: LoginDTO) {
@@ -54,6 +54,6 @@ export class AuthService {
             role: Role.ADMIN,
         });
 
-        return { cookies: session };
+        return session;
     }
 }
