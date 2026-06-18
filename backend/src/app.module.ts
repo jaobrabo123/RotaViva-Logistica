@@ -10,6 +10,7 @@ import { APP_GUARD } from "@nestjs/core";
 import { JwtAuthGuard } from "./modules/auth/guards/jwt-auth.guard";
 import { RolesGuard } from "./modules/auth/guards/roles.guard";
 import { DatabaseModule } from "./infra/database/database.module";
+import { AdminModule } from "./modules/admin/admin.module";
 
 @Module({
     imports: [
@@ -34,6 +35,7 @@ import { DatabaseModule } from "./infra/database/database.module";
         ProdutoModule,
         ClienteModule,
         AuthModule,
+        AdminModule,
     ],
     providers: [
         {

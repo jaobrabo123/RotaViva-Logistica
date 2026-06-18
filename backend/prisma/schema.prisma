@@ -10,6 +10,7 @@ datasource db {
 
 model Entregador {
   id       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  acesso   String    @unique @db.VarChar(30)
   nome     String    @db.VarChar(50)
   telefone String    @db.VarChar(18)
   cnh      String    @db.VarChar(2)
@@ -68,6 +69,6 @@ model Entrega {
 
 model Admin {
   id     String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  acesso String @db.VarChar(30)
+  acesso String @unique @db.VarChar(30)
   senha  String @db.VarChar(255)
 }

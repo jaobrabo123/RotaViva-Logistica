@@ -3,4 +3,5 @@ export class PublicEntregador {
     nome!: string;
     telefone!: string;
     cnh!: string;
+    acesso!: string;
 }

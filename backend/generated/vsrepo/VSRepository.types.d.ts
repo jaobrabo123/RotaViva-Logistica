@@ -398,7 +398,7 @@ export type MethodConfig<M extends Prisma.ModelName, SelectModels = any> = {
     /** Define se o método será exposto no repository. */
     readonly map: boolean;
     /** Sobrescreve o `defaultSelectModel` apenas para este método. */
-    readonly selectModel?: keyof SelectModels | false;
+    readonly selectModel?: string | false;
     /** Controla se o método combina (`extending`) ou sobrescreve (`overwrite`) o `requiredWhere`. */
     readonly whereType?: 'overwrite' | 'extending';
     /** Redireciona a lógica para outro padrão de método válido. */

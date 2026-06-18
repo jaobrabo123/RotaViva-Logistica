@@ -39,7 +39,7 @@ export class EntregadorController {
     @RequireRoles(Role.ENTREGADOR)
     @Get("me")
     @ApiOkResponse({ type: PublicEntregador })
-    findMe(@CurrentUser("roleId") entregadorId: string) {
+    findMe(@CurrentUser("sub") entregadorId: string) {
         return this.entregadorService.findOne(entregadorId);
     }
 

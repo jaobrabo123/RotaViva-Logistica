@@ -12,6 +12,7 @@ const entregadorVSRepo = setupVSRepo<Entregador, "Entregador">()({
             nome: true,
             cnh: true,
             telefone: true,
+            acesso: true,
         },
         internal: {
             id: true,
@@ -19,9 +20,14 @@ const entregadorVSRepo = setupVSRepo<Entregador, "Entregador">()({
             cnh: true,
             telefone: true,
             senha: true,
+            acesso: true,
         },
     },
     defaultSelectModel: "public",
+    methods: {
+        findByAcesso: { map: true, selectModel: "internal", fbMode: "one" },
+        existsByAcesso: { map: true },
+    },
 });
 
 export type EntregadorRepository = RepositoryOf<typeof entregadorVSRepo>;
@@ -32,6 +38,6 @@ export const EntregadorRepositoryProvider: Provider = {
     provide: ENTREGADOR_REPOSITORY,
     inject: [PrismaService],
     useFactory: (prisma: PrismaService) => {
-        return entregadorVSRepo.build(prisma);
+        return entregadorVSRepo.build(prisma, { showWorking: false });
     },
 };
