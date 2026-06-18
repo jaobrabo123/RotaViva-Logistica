@@ -1,0 +1,73 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Entregador {
+  id       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nome     String    @db.VarChar(50)
+  telefone String    @db.VarChar(18)
+  cnh      String    @db.VarChar(2)
+  senha    String    @db.VarChar(255)
+  entregas Entrega[]
+
+  @@map("entregador")
+}
+
+model Cliente {
+  id       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nome     String    @db.VarChar(50)
+  endereco String    @db.VarChar(150)
+  pedidos  Entrega[]
+
+  @@map("cliente")
+}
+
+model Produto {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nome      String    @db.VarChar(50)
+  descricao String    @db.VarChar(250)
+  preco     Decimal   @db.Decimal(10, 2)
+  entregas  Entrega[]
+
+  @@map("produto")
+}
+
+enum StatusEntrega {
+  PENDENTE
+  A_CAMINHO
+  ENTREGUE
+  FALHA
+
+  @@map("status_entrega")
+}
+
+model Entrega {
+  id             String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  status         StatusEntrega
+  duracaoMinutos Int?          @map("duracao_minutos")
+  latitude       Int?
+  longitude      Int?
+  detalhes       String?       @db.VarChar(300)
+  imagem         String?       @db.VarChar(255)
+  codigo         String        @db.VarChar(100)
+  entregadorId   String        @map("entregador_id") @db.Uuid
+  clienteId      String        @map("cliente_id") @db.Uuid
+  produtoId      String        @map("produto_id") @db.Uuid
+  entregador     Entregador    @relation(fields: [entregadorId], references: [id], onDelete: Cascade)
+  cliente        Cliente       @relation(fields: [clienteId], references: [id], onDelete: Cascade)
+  produto        Produto       @relation(fields: [produtoId], references: [id], onDelete: Cascade)
+
+  @@map("entrega")
+}
+
+model Admin {
+  id     String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  acesso String @db.VarChar(30)
+  senha  String @db.VarChar(255)
+}
