@@ -38,6 +38,12 @@ const entregaVSRepo = setupVSRepo<Entrega, "Entrega">()({
         },
     },
     defaultSelectModel: "publicWithRelations",
+    methods: {
+        findByStatusOptionalAndCodigoOptionalAndEntregadorIdOptionalAndClienteIdOptionalAndProdutoIdOptionalPaginated:
+            {
+                map: true,
+            },
+    },
 });
 
 export type EntregaRepository = RepositoryOf<typeof entregaVSRepo>;

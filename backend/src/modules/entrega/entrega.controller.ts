@@ -9,6 +9,7 @@ import {
     ParseUUIDPipe,
     HttpCode,
     HttpStatus,
+    Query,
 } from "@nestjs/common";
 import { EntregaService } from "./entrega.service";
 import { CreateEntregaDTO } from "./dto/create-entrega.dto";
@@ -16,6 +17,7 @@ import { UpdateEntregaDTO } from "./dto/update-entrega.dto";
 import { RequireRoles, Role } from "../../shared/decorators/request/roles.decorator";
 import { ApiCreatedResponse, ApiOkResponse } from "@nestjs/swagger";
 import { PublicEntrega } from "./entities/public-entrega.entity";
+import { FindEntregaQueryDTO } from "./dto/find-entrega-query.dto";
 
 @Controller("entregas")
 export class EntregaController {
@@ -30,8 +32,8 @@ export class EntregaController {
 
     @Get()
     @ApiOkResponse({ type: PublicEntrega, isArray: true })
-    findAll() {
-        return this.entregaService.findAll();
+    findAll(@Query() query: FindEntregaQueryDTO) {
+        return this.entregaService.findAll(query);
     }
 
     @Get(":id")

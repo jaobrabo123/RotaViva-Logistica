@@ -3,6 +3,8 @@ import { CreateEntregadorDTO } from "./dto/create-entregador.dto";
 import { UpdateEntregadorDTO } from "./dto/update-entregador.dto";
 import { ENTREGADOR_REPOSITORY, type EntregadorRepository } from "./entregador.repository";
 import { Argon2Provider } from "../auth/providers/argon2.provider";
+import { FindEntregadorQueryDTO } from "./dto/find-entregador-query.dto";
+import { paginationByQuery } from "../../shared/utils/format.util";
 
 @Injectable()
 export class EntregadorService {
@@ -28,8 +30,15 @@ export class EntregadorService {
         return this.entregadorRepository.save(dto);
     }
 
-    async findAll() {
-        return this.entregadorRepository.getAll();
+    async findAll(query: FindEntregadorQueryDTO) {
+        const pagination = paginationByQuery(query);
+
+        return this.entregadorRepository.findByNomeContainsInsensitiveOptionalAndCnhOptionalAndAcessoContainsInsensitiveOptionalPaginated(
+            query.nome,
+            query.cnh,
+            query.acesso,
+            pagination,
+        );
     }
 
     async findOne(id: string) {

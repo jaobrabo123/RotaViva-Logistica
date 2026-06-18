@@ -2,6 +2,9 @@ import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { CreateProdutoDTO } from "./dto/create-produto.dto";
 import { UpdateProdutoDTO } from "./dto/update-produto.dto";
 import { PRODUTO_REPOSITORY, type ProdutoRepository } from "./produto.repository";
+import { FindProdutoQueryDTO } from "./dto/find-produto-query.dto";
+import { paginationByQuery } from "../../shared/utils/format.util";
+import { Decimal } from "../../../generated/prisma/internal/prismaNamespace";
 
 @Injectable()
 export class ProdutoService {
@@ -17,8 +20,15 @@ export class ProdutoService {
         return this.produtoRepository.save(dto);
     }
 
-    async findAll() {
-        return this.produtoRepository.getAll();
+    async findAll(query: FindProdutoQueryDTO) {
+        const pagination = paginationByQuery(query);
+        return this.produtoRepository.findByNomeContainsInsensitiveOptionalAndPrecoBetweenOptionalPaginated(
+            query.nome,
+            query.precoMin && query.precoMax
+                ? [new Decimal(query.precoMin), new Decimal(query.precoMax)]
+                : undefined,
+            pagination,
+        );
     }
 
     async findOne(id: string) {

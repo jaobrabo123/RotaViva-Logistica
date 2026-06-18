@@ -9,6 +9,7 @@ import {
     ParseUUIDPipe,
     HttpCode,
     HttpStatus,
+    Query,
 } from "@nestjs/common";
 import { ProdutoService } from "./produto.service";
 import { CreateProdutoDTO } from "./dto/create-produto.dto";
@@ -16,6 +17,7 @@ import { UpdateProdutoDTO } from "./dto/update-produto.dto";
 import { RequireRoles, Role } from "../../shared/decorators/request/roles.decorator";
 import { ApiCreatedResponse, ApiOkResponse } from "@nestjs/swagger";
 import { PublicProduto } from "./entities/public-produto.entity";
+import { FindProdutoQueryDTO } from "./dto/find-produto-query.dto";
 
 @Controller("produtos")
 export class ProdutoController {
@@ -30,8 +32,8 @@ export class ProdutoController {
 
     @Get()
     @ApiOkResponse({ type: PublicProduto, isArray: true })
-    findAll() {
-        return this.produtoService.findAll();
+    findAll(@Query() query: FindProdutoQueryDTO) {
+        return this.produtoService.findAll(query);
     }
 
     @Get(":id")

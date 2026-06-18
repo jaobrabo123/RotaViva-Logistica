@@ -9,6 +9,7 @@ import {
     ParseUUIDPipe,
     HttpStatus,
     HttpCode,
+    Query,
 } from "@nestjs/common";
 import { EntregadorService } from "./entregador.service";
 import { CreateEntregadorDTO } from "./dto/create-entregador.dto";
@@ -17,6 +18,7 @@ import { RequireRoles, Role } from "../../shared/decorators/request/roles.decora
 import { CurrentUser } from "../../shared/decorators/request/current-user.decorator";
 import { ApiCreatedResponse, ApiOkResponse } from "@nestjs/swagger";
 import { PublicEntregador } from "./entities/public-entregador.entity";
+import { FindEntregadorQueryDTO } from "./dto/find-entregador-query.dto";
 
 @Controller("entregadores")
 export class EntregadorController {
@@ -32,8 +34,8 @@ export class EntregadorController {
     @RequireRoles(Role.ADMIN)
     @Get()
     @ApiOkResponse({ type: PublicEntregador, isArray: true })
-    findAll() {
-        return this.entregadorService.findAll();
+    findAll(@Query() query: FindEntregadorQueryDTO) {
+        return this.entregadorService.findAll(query);
     }
 
     @RequireRoles(Role.ENTREGADOR)

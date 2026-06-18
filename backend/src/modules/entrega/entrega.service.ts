@@ -2,6 +2,8 @@ import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { CreateEntregaDTO } from "./dto/create-entrega.dto";
 import { UpdateEntregaDTO } from "./dto/update-entrega.dto";
 import { ENTREGA_REPOSITORY, type EntregaRepository } from "./entrega.repository";
+import { FindEntregaQueryDTO } from "./dto/find-entrega-query.dto";
+import { paginationByQuery } from "../../shared/utils/format.util";
 
 @Injectable()
 export class EntregaService {
@@ -17,8 +19,16 @@ export class EntregaService {
         return this.entregaRepository.save(dto);
     }
 
-    findAll() {
-        return this.entregaRepository.getAll();
+    findAll(query: FindEntregaQueryDTO) {
+        const pagination = paginationByQuery(query);
+        return this.entregaRepository.findByStatusOptionalAndCodigoOptionalAndEntregadorIdOptionalAndClienteIdOptionalAndProdutoIdOptionalPaginated(
+            query.status,
+            query.codigo,
+            query.entregadorId,
+            query.clienteId,
+            query.produtoId,
+            pagination,
+        );
     }
 
     async findOne(id: string) {

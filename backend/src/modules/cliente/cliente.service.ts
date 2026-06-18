@@ -2,6 +2,8 @@ import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { CreateClienteDTO } from "./dto/create-cliente.dto";
 import { UpdateClienteDTO } from "./dto/update-cliente.dto";
 import { CLIENTE_REPOSITORY, type ClienteRepository } from "./cliente.repository";
+import { FindClienteQueryDTO } from "./dto/find-cliente-query.dto";
+import { paginationByQuery } from "../../shared/utils/format.util";
 
 @Injectable()
 export class ClienteService {
@@ -17,8 +19,12 @@ export class ClienteService {
         return this.clienteRepository.save(dto);
     }
 
-    findAll() {
-        return this.clienteRepository.getAll();
+    findAll(query: FindClienteQueryDTO) {
+        const pagination = paginationByQuery(query);
+        return this.clienteRepository.findByNomeContainsInsensitiveOptionalPaginated(
+            query.nome,
+            pagination,
+        );
     }
 
     async findOne(id: string) {

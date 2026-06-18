@@ -6,6 +6,9 @@ import { PrismaService } from "../../infra/database/prisma.service";
 const clienteVSRepo = setupVSRepo<Cliente, "Cliente">()({
     tableName: "cliente",
     pkName: "id",
+    methods: {
+        findByNomeContainsInsensitiveOptionalPaginated: { map: true },
+    },
 });
 
 export type ClienteRepository = RepositoryOf<typeof clienteVSRepo>;

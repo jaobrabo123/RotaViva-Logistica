@@ -4,6 +4,7 @@ import {
     IntField,
     NumberField,
     StringField,
+    UrlField,
     UUIDField,
 } from "../../../shared/decorators/fields";
 
@@ -34,4 +35,7 @@ export class CreateEntregaDTO {
 
     @UUIDField({ apiProperty: true })
     produtoId!: string;
+
+    @UrlField({ apiProperty: true, nullAble: true })
+    imagem!: string | null;
 }

@@ -9,6 +9,7 @@ import {
     ParseUUIDPipe,
     HttpCode,
     HttpStatus,
+    Query,
 } from "@nestjs/common";
 import { ClienteService } from "./cliente.service";
 import { CreateClienteDTO } from "./dto/create-cliente.dto";
@@ -16,6 +17,7 @@ import { UpdateClienteDTO } from "./dto/update-cliente.dto";
 import { RequireRoles, Role } from "../../shared/decorators/request/roles.decorator";
 import { ApiCreatedResponse, ApiOkResponse } from "@nestjs/swagger";
 import { PublicCliente } from "./entities/public-cliente.entity";
+import { FindClienteQueryDTO } from "./dto/find-cliente-query.dto";
 
 @Controller("clientes")
 @RequireRoles(Role.ADMIN)
@@ -30,8 +32,8 @@ export class ClienteController {
 
     @Get()
     @ApiOkResponse({ type: PublicCliente, isArray: true })
-    findAll() {
-        return this.clienteService.findAll();
+    findAll(@Query() query: FindClienteQueryDTO) {
+        return this.clienteService.findAll(query);
     }
 
     @Get(":id")

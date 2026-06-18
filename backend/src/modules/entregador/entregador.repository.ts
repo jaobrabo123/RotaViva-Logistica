@@ -27,6 +27,8 @@ const entregadorVSRepo = setupVSRepo<Entregador, "Entregador">()({
     methods: {
         findByAcesso: { map: true, selectModel: "internal", fbMode: "one" },
         existsByAcesso: { map: true },
+        findByNomeContainsInsensitiveOptionalAndCnhOptionalAndAcessoContainsInsensitiveOptionalPaginated:
+            { map: true },
     },
 });
 

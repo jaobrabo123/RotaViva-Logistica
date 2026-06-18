@@ -6,6 +6,9 @@ import { PrismaService } from "../../infra/database/prisma.service";
 const produtoVSRepo = setupVSRepo<Produto, "Produto">()({
     tableName: "produto",
     pkName: "id",
+    methods: {
+        findByNomeContainsInsensitiveOptionalAndPrecoBetweenOptionalPaginated: { map: true },
+    },
 });
 
 export type ProdutoRepository = RepositoryOf<typeof produtoVSRepo>;
