@@ -1,34 +1,54 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from "@nestjs/common";
+import {
+    Controller,
+    Get,
+    Post,
+    Body,
+    Patch,
+    Param,
+    Delete,
+    ParseUUIDPipe,
+    HttpCode,
+    HttpStatus,
+} from "@nestjs/common";
 import { ClienteService } from "./cliente.service";
-import { CreateClienteDto } from "./dto/create-cliente.dto";
-import { UpdateClienteDto } from "./dto/update-cliente.dto";
+import { CreateClienteDTO } from "./dto/create-cliente.dto";
+import { UpdateClienteDTO } from "./dto/update-cliente.dto";
+import { RequireRoles, Role } from "../../shared/decorators/request/roles.decorator";
+import { ApiCreatedResponse, ApiOkResponse } from "@nestjs/swagger";
+import { PublicCliente } from "./entities/public-cliente.entity";
 
-@Controller("cliente")
+@Controller("clientes")
+@RequireRoles(Role.ADMIN)
 export class ClienteController {
     constructor(private readonly clienteService: ClienteService) {}
 
     @Post()
-    create(@Body() createClienteDto: CreateClienteDto) {
+    @ApiCreatedResponse({ type: PublicCliente })
+    create(@Body() createClienteDto: CreateClienteDTO) {
         return this.clienteService.create(createClienteDto);
     }
 
     @Get()
+    @ApiOkResponse({ type: PublicCliente, isArray: true })
     findAll() {
         return this.clienteService.findAll();
     }
 
     @Get(":id")
-    findOne(@Param("id") id: string) {
-        return this.clienteService.findOne(+id);
+    @ApiOkResponse({ type: PublicCliente })
+    findOne(@Param("id", ParseUUIDPipe) id: string) {
+        return this.clienteService.findOne(id);
     }
 
     @Patch(":id")
-    update(@Param("id") id: string, @Body() updateClienteDto: UpdateClienteDto) {
-        return this.clienteService.update(+id, updateClienteDto);
+    @ApiOkResponse({ type: PublicCliente })
+    update(@Param("id", ParseUUIDPipe) id: string, @Body() updateClienteDto: UpdateClienteDTO) {
+        return this.clienteService.update(id, updateClienteDto);
     }
 
     @Delete(":id")
-    remove(@Param("id") id: string) {
-        return this.clienteService.remove(+id);
+    @HttpCode(HttpStatus.NO_CONTENT)
+    remove(@Param("id", ParseUUIDPipe) id: string) {
+        return this.clienteService.remove(id);
     }
 }

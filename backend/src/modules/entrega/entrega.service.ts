@@ -1,26 +1,41 @@
-import { Injectable } from "@nestjs/common";
-import { CreateEntregaDto } from "./dto/create-entrega.dto";
-import { UpdateEntregaDto } from "./dto/update-entrega.dto";
+import { Inject, Injectable, NotFoundException } from "@nestjs/common";
+import { CreateEntregaDTO } from "./dto/create-entrega.dto";
+import { UpdateEntregaDTO } from "./dto/update-entrega.dto";
+import { ENTREGA_REPOSITORY, type EntregaRepository } from "./entrega.repository";
 
 @Injectable()
 export class EntregaService {
-    create(createEntregaDto: CreateEntregaDto) {
-        return "This action adds a new entrega";
+    constructor(
+        @Inject(ENTREGA_REPOSITORY) private readonly entregaRepository: EntregaRepository,
+    ) {}
+
+    private assertEntregaExists<T>(entrega: T): asserts entrega is NonNullable<T> {
+        if (!entrega) throw new NotFoundException("Entrega não encontrada.");
+    }
+
+    create(dto: CreateEntregaDTO) {
+        return this.entregaRepository.save(dto);
     }
 
     findAll() {
-        return `This action returns all entrega`;
+        return this.entregaRepository.getAll();
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} entrega`;
+    async findOne(id: string) {
+        const entrega = await this.entregaRepository.get(id);
+        this.assertEntregaExists(entrega);
+        return entrega;
     }
 
-    update(id: number, updateEntregaDto: UpdateEntregaDto) {
-        return `This action updates a #${id} entrega`;
+    async update(id: string, dto: UpdateEntregaDTO) {
+        const entrega = await this.entregaRepository.get(id, { selectModel: "public" });
+        this.assertEntregaExists(entrega);
+        return this.entregaRepository.save({ ...entrega, ...dto });
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} entrega`;
+    async remove(id: string) {
+        const entrega = await this.entregaRepository.get(id, { selectModel: "public" });
+        this.assertEntregaExists(entrega);
+        await this.entregaRepository.remove(id);
     }
 }

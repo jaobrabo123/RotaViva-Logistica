@@ -17,5 +17,6 @@ import { Argon2Provider } from "./providers/argon2.provider";
     ],
     controllers: [AuthController],
     providers: [AuthService, Argon2Provider],
+    exports: [JwtModule, Argon2Provider],
 })
 export class AuthModule {}

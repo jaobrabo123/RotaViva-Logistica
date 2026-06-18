@@ -28,22 +28,22 @@ export type AggregateEntrega = {
 
 export type EntregaAvgAggregateOutputType = {
   duracaoMinutos: number | null
-  latitude: number | null
-  longitude: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
 }
 
 export type EntregaSumAggregateOutputType = {
   duracaoMinutos: number | null
-  latitude: number | null
-  longitude: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
 }
 
 export type EntregaMinAggregateOutputType = {
   id: string | null
   status: $Enums.StatusEntrega | null
   duracaoMinutos: number | null
-  latitude: number | null
-  longitude: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
   detalhes: string | null
   imagem: string | null
   codigo: string | null
@@ -56,8 +56,8 @@ export type EntregaMaxAggregateOutputType = {
   id: string | null
   status: $Enums.StatusEntrega | null
   duracaoMinutos: number | null
-  latitude: number | null
-  longitude: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
   detalhes: string | null
   imagem: string | null
   codigo: string | null
@@ -227,8 +227,8 @@ export type EntregaGroupByOutputType = {
   id: string
   status: $Enums.StatusEntrega
   duracaoMinutos: number | null
-  latitude: number | null
-  longitude: number | null
+  latitude: runtime.Decimal | null
+  longitude: runtime.Decimal | null
   detalhes: string | null
   imagem: string | null
   codigo: string
@@ -264,8 +264,8 @@ export type EntregaWhereInput = {
   id?: Prisma.UuidFilter<"Entrega"> | string
   status?: Prisma.EnumStatusEntregaFilter<"Entrega"> | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.IntNullableFilter<"Entrega"> | number | null
-  latitude?: Prisma.IntNullableFilter<"Entrega"> | number | null
-  longitude?: Prisma.IntNullableFilter<"Entrega"> | number | null
+  latitude?: Prisma.DecimalNullableFilter<"Entrega"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Entrega"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.StringNullableFilter<"Entrega"> | string | null
   imagem?: Prisma.StringNullableFilter<"Entrega"> | string | null
   codigo?: Prisma.StringFilter<"Entrega"> | string
@@ -301,8 +301,8 @@ export type EntregaWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.EntregaWhereInput | Prisma.EntregaWhereInput[]
   status?: Prisma.EnumStatusEntregaFilter<"Entrega"> | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.IntNullableFilter<"Entrega"> | number | null
-  latitude?: Prisma.IntNullableFilter<"Entrega"> | number | null
-  longitude?: Prisma.IntNullableFilter<"Entrega"> | number | null
+  latitude?: Prisma.DecimalNullableFilter<"Entrega"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Entrega"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.StringNullableFilter<"Entrega"> | string | null
   imagem?: Prisma.StringNullableFilter<"Entrega"> | string | null
   codigo?: Prisma.StringFilter<"Entrega"> | string
@@ -340,8 +340,8 @@ export type EntregaScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"Entrega"> | string
   status?: Prisma.EnumStatusEntregaWithAggregatesFilter<"Entrega"> | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.IntNullableWithAggregatesFilter<"Entrega"> | number | null
-  latitude?: Prisma.IntNullableWithAggregatesFilter<"Entrega"> | number | null
-  longitude?: Prisma.IntNullableWithAggregatesFilter<"Entrega"> | number | null
+  latitude?: Prisma.DecimalNullableWithAggregatesFilter<"Entrega"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableWithAggregatesFilter<"Entrega"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.StringNullableWithAggregatesFilter<"Entrega"> | string | null
   imagem?: Prisma.StringNullableWithAggregatesFilter<"Entrega"> | string | null
   codigo?: Prisma.StringWithAggregatesFilter<"Entrega"> | string
@@ -354,8 +354,8 @@ export type EntregaCreateInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -368,8 +368,8 @@ export type EntregaUncheckedCreateInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -382,8 +382,8 @@ export type EntregaUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -396,8 +396,8 @@ export type EntregaUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -410,8 +410,8 @@ export type EntregaCreateManyInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -424,8 +424,8 @@ export type EntregaUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -435,8 +435,8 @@ export type EntregaUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -647,6 +647,14 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
@@ -655,8 +663,8 @@ export type EntregaCreateWithoutEntregadorInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -668,8 +676,8 @@ export type EntregaUncheckedCreateWithoutEntregadorInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -710,8 +718,8 @@ export type EntregaScalarWhereInput = {
   id?: Prisma.UuidFilter<"Entrega"> | string
   status?: Prisma.EnumStatusEntregaFilter<"Entrega"> | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.IntNullableFilter<"Entrega"> | number | null
-  latitude?: Prisma.IntNullableFilter<"Entrega"> | number | null
-  longitude?: Prisma.IntNullableFilter<"Entrega"> | number | null
+  latitude?: Prisma.DecimalNullableFilter<"Entrega"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.DecimalNullableFilter<"Entrega"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.StringNullableFilter<"Entrega"> | string | null
   imagem?: Prisma.StringNullableFilter<"Entrega"> | string | null
   codigo?: Prisma.StringFilter<"Entrega"> | string
@@ -724,8 +732,8 @@ export type EntregaCreateWithoutClienteInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -737,8 +745,8 @@ export type EntregaUncheckedCreateWithoutClienteInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -776,8 +784,8 @@ export type EntregaCreateWithoutProdutoInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -789,8 +797,8 @@ export type EntregaUncheckedCreateWithoutProdutoInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -828,8 +836,8 @@ export type EntregaCreateManyEntregadorInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -841,8 +849,8 @@ export type EntregaUpdateWithoutEntregadorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -854,8 +862,8 @@ export type EntregaUncheckedUpdateWithoutEntregadorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -867,8 +875,8 @@ export type EntregaUncheckedUpdateManyWithoutEntregadorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -880,8 +888,8 @@ export type EntregaCreateManyClienteInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -893,8 +901,8 @@ export type EntregaUpdateWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -906,8 +914,8 @@ export type EntregaUncheckedUpdateWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -919,8 +927,8 @@ export type EntregaUncheckedUpdateManyWithoutClienteInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -932,8 +940,8 @@ export type EntregaCreateManyProdutoInput = {
   id?: string
   status: $Enums.StatusEntrega
   duracaoMinutos?: number | null
-  latitude?: number | null
-  longitude?: number | null
+  latitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: string | null
   imagem?: string | null
   codigo: string
@@ -945,8 +953,8 @@ export type EntregaUpdateWithoutProdutoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -958,8 +966,8 @@ export type EntregaUncheckedUpdateWithoutProdutoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -971,8 +979,8 @@ export type EntregaUncheckedUpdateManyWithoutProdutoInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.EnumStatusEntregaFieldUpdateOperationsInput | $Enums.StatusEntrega
   duracaoMinutos?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  latitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  longitude?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  latitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  longitude?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   detalhes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   imagem?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   codigo?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1075,8 +1083,8 @@ export type $EntregaPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     status: $Enums.StatusEntrega
     duracaoMinutos: number | null
-    latitude: number | null
-    longitude: number | null
+    latitude: runtime.Decimal | null
+    longitude: runtime.Decimal | null
     detalhes: string | null
     imagem: string | null
     codigo: string
@@ -1512,8 +1520,8 @@ export interface EntregaFieldRefs {
   readonly id: Prisma.FieldRef<"Entrega", 'String'>
   readonly status: Prisma.FieldRef<"Entrega", 'StatusEntrega'>
   readonly duracaoMinutos: Prisma.FieldRef<"Entrega", 'Int'>
-  readonly latitude: Prisma.FieldRef<"Entrega", 'Int'>
-  readonly longitude: Prisma.FieldRef<"Entrega", 'Int'>
+  readonly latitude: Prisma.FieldRef<"Entrega", 'Decimal'>
+  readonly longitude: Prisma.FieldRef<"Entrega", 'Decimal'>
   readonly detalhes: Prisma.FieldRef<"Entrega", 'String'>
   readonly imagem: Prisma.FieldRef<"Entrega", 'String'>
   readonly codigo: Prisma.FieldRef<"Entrega", 'String'>

@@ -1,26 +1,41 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable, NotFoundException } from "@nestjs/common";
 import { CreateProdutoDTO } from "./dto/create-produto.dto";
 import { UpdateProdutoDTO } from "./dto/update-produto.dto";
+import { PRODUTO_REPOSITORY, type ProdutoRepository } from "./produto.repository";
 
 @Injectable()
 export class ProdutoService {
-    create(createProdutoDto: CreateProdutoDTO) {
-        return "This action adds a new produto";
+    constructor(
+        @Inject(PRODUTO_REPOSITORY) private readonly produtoRepository: ProdutoRepository,
+    ) {}
+
+    private assertProdutoExists<T>(produto: T): asserts produto is NonNullable<T> {
+        if (!produto) throw new NotFoundException("Produto não encontrado");
     }
 
-    findAll() {
-        return `This action returns all produto`;
+    async create(dto: CreateProdutoDTO) {
+        return this.produtoRepository.save(dto);
     }
 
-    findOne(id: number) {
-        return `This action returns a #${id} produto`;
+    async findAll() {
+        return this.produtoRepository.getAll();
     }
 
-    update(id: number, updateProdutoDto: UpdateProdutoDTO) {
-        return `This action updates a #${id} produto`;
+    async findOne(id: string) {
+        const produto = await this.produtoRepository.get(id);
+        this.assertProdutoExists(produto);
+        return produto;
     }
 
-    remove(id: number) {
-        return `This action removes a #${id} produto`;
+    async update(id: string, dto: UpdateProdutoDTO) {
+        const produto = await this.produtoRepository.get(id);
+        this.assertProdutoExists(produto);
+        return this.produtoRepository.save({ ...produto, ...dto });
+    }
+
+    async remove(id: string) {
+        const produto = await this.produtoRepository.get(id);
+        this.assertProdutoExists(produto);
+        await this.produtoRepository.remove(id);
     }
 }

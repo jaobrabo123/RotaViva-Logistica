@@ -51,8 +51,8 @@ model Entrega {
   id             String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   status         StatusEntrega
   duracaoMinutos Int?          @map("duracao_minutos")
-  latitude       Int?
-  longitude      Int?
+  latitude       Decimal?      @db.Decimal(9, 6)
+  longitude      Decimal?      @db.Decimal(9, 6)
   detalhes       String?       @db.VarChar(300)
   imagem         String?       @db.VarChar(255)
   codigo         String        @db.VarChar(100)
